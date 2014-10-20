@@ -24,9 +24,20 @@
       <plugin name="ParsePush" value="ParsePush"/>
     </config-file>
 
+    <preference name="APP_ID" />
+    <preference name="CLIENT_KEY" />
+
     <!-- Plugin Code -->
     <header-file src="src/ios/AppDelegate+ParsePush.h" />
     <source-file src="src/ios/AppDelegate+ParsePush.m" />
+
+    <config-file target="parse.plist" parent="ParseAppID">
+        <string>$APP_ID</string>
+    </config-file>
+
+    <config-file target="parse.plist" parent="ParseClientKey">
+        <string>$CLIENT_KEY</string>
+    </config-file>
 
     <!-- Parse framework -->
     <framework src="src/ios/frameworks/Parse.framework" custom="true" />

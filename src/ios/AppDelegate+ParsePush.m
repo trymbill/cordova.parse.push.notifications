@@ -14,13 +14,31 @@
 }
 
 - (BOOL)application:(UIApplication*)application customDidFinishLaunchingWithOptions:(NSDictionary*)launchOptions {
-  /******************************************************************************/
-  // Uncomment and fill in with your Parse credentials:
-  // [Parse setApplicationId:@"your_application_id" clientKey:@"your_client_key"];
-  /******************************************************************************/
+  // Fetch parse plist file and get app id and client key from it
+  NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"parse" ofType:@"plist"]];
+  NSString *app_id = [dictionary objectForKey:@"ParseAppID"];
+  NSString *client_key = [dictionary objectForKey:@"ParseClientKey"];
+
+  [Parse setApplicationId:app_id clientKey:client_key];
+
   [[PFInstallation currentInstallation] setObject:[PFUser currentUser] forKey:@"user"];
   [[PFInstallation currentInstallation] saveEventually];
-  [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeSound];
+
+  // Register for Push Notitications, if running iOS 8
+  if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+    UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
+                                                    UIUserNotificationTypeBadge |
+                                                    UIUserNotificationTypeSound);
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
+                                                                             categories:nil];
+    [application registerUserNotificationSettings:settings];
+    [application registerForRemoteNotifications];
+  } else {
+    // Register for Push Notifications before iOS 8
+    [application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+                                                     UIRemoteNotificationTypeAlert |
+                                                     UIRemoteNotificationTypeSound)];
+  }
 
   if (launchOptions != nil) {
     NSDictionary* notification = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
