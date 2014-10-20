@@ -8,14 +8,17 @@
 @implementation AppDelegate (ParsePush)
 
 + (void)load {
-  Method original = class_getInstanceMethod(self, @selector(didFinishLaunchingWithOptions:));
-  Method custom = class_getInstanceMethod(self, @selector(customDidFinishLaunchingWithOptions:));
-  method_exchangeImplementations(original, custom);
+  method_exchangeImplementations(class_getInstanceMethod(self, @selector(application:didFinishLaunchingWithOptions:)), class_getInstanceMethod(self, @selector(application:customDidFinishLaunchingWithOptions:)));
 }
 
 - (BOOL)application:(UIApplication*)application customDidFinishLaunchingWithOptions:(NSDictionary*)launchOptions {
+  // Get app name
+  NSBundle *bundle = [NSBundle mainBundle];
+  NSDictionary *info = [bundle infoDictionary];
+  NSString *prodName = [info objectForKey:@"CFBundleDisplayName"];
+
   // Fetch parse plist file and get app id and client key from it
-  NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"parse" ofType:@"plist"]];
+  NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@%@", prodName, @"-Info"]; ofType:@"plist"]];
   NSString *app_id = [dictionary objectForKey:@"ParseAppID"];
   NSString *client_key = [dictionary objectForKey:@"ParseClientKey"];
 

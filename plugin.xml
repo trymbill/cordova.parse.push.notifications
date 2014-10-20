@@ -47,11 +47,11 @@
     <header-file src="src/ios/AppDelegate+ParsePush.h" />
     <source-file src="src/ios/AppDelegate+ParsePush.m" />
 
-    <config-file target="parse.plist" parent="ParseAppID">
+    <config-file target="*-Info.plist" parent="ParseAppID">
         <string>$APP_ID</string>
     </config-file>
 
-    <config-file target="parse.plist" parent="ParseClientKey">
+    <config-file target="*-Info.plist" parent="ParseClientKey">
         <string>$CLIENT_KEY</string>
     </config-file>
   </platform>
