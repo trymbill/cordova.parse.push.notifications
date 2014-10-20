@@ -33,9 +33,6 @@
     <!-- Parse framework -->
     <framework src="src/ios/frameworks/Bolts.framework" custom="true" />
 
-    <!-- Parse framework -->
-    <framework src="src/ios/frameworks/ParseFacebookUtils.framework" custom="true" />
-
     <!-- System frameworks -->
     <framework src="libz.dylib" />
     <framework src="Foundation.framework" />
