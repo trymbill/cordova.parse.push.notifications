@@ -125,7 +125,7 @@
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
     if (currentInstallation.badge != 0) {
         currentInstallation.badge = 0;
-        [currentInstallation saveEventually];
+        [currentInstallation saveInBackground];
     }
 }
 
