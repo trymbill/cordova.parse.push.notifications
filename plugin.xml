@@ -10,13 +10,14 @@
   <license>MIT</license>
 
   <!-- JavaScript interface -->
-  <js-module src="www/ParsePush.js">
-		<merges target="CC" />
-	</js-module>
+  <js-module src="www/ParsePush.js" name="ParsePush" target="www/ParsePush.js">
+    <clobbers target="window.ParsePush" />
+  </js-module>
 
   <!-- ios -->
   <platform name="ios">
     <config-file target="config.xml" parent="plugins">
+
       <feature name="ParsePush">
         <param name="ios-package" value="ParsePush"/>
         <param name="onload" value="true" />
@@ -46,6 +47,9 @@
     <!-- Plugin Code -->
     <header-file src="src/ios/AppDelegate+ParsePush.h" />
     <source-file src="src/ios/AppDelegate+ParsePush.m" />
+
+    <header-file src="src/ios/CordovaParse.h" />
+    <source-file src="src/ios/CordovaParse.m" />
 
     <config-file target="*-Info.plist" parent="ParseAppID">
         <string>$APP_ID</string>
