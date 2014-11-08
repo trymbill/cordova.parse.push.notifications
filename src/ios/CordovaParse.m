@@ -29,7 +29,7 @@
     if (key != nil && value != nil) {
         PFInstallation *installation = [PFInstallation currentInstallation];
         [installation setObject:value forKey:key];
-        [installation saveEventually];
+        [installation saveInBackground];
         
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
     } else { 
