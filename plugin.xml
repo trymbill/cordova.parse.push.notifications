@@ -23,6 +23,12 @@
         <param name="onload" value="true" />
       </feature>
       <plugin name="ParsePush" value="ParsePush"/>
+
+      <feature name="CordovaParse">
+        <param name="ios-package" value="CordovaParse"/>
+        <param name="onload" value="true" />
+      </feature>
+      <plugin name="CordovaParse" value="CordovaParse"/>
     </config-file>
 
     <preference name="APP_ID" />
