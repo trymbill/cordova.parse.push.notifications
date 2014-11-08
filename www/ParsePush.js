@@ -24,7 +24,7 @@ var ParsePush = {
             console.log("getAppVersion call failed with error: " + err);
             if (failcb)
                 failcb(err);
-        }, "ParsePush", "getInstallationId", []);
+        }, "CordovaParse", "getInstallationId", []);
     },
 
     setKeyValue: function (key, value, successcb, failcb) {
@@ -39,7 +39,7 @@ var ParsePush = {
             console.log("setKeyValue call failed with error: " + err);
             if (failcb)
                 failcb(err);
-        }, "ParsePush", "setKeyValue", [key, value]);
+        }, "CordovaParse", "setKeyValue", [key, value]);
     }
 }
 
