@@ -1,6 +1,8 @@
 #import "CordovaParse.h"
 #import <Cordova/CDV.h>
 
+#import <Parse/Parse.h>
+
 @implementation CordovaParse
 
 - (void)getInstallationId:(CDVInvokedUrlCommand*)command
